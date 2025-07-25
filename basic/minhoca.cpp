@@ -16,21 +16,34 @@ int main() {
         }
     }
 
-    vector<int> better(m+1);
+    vector<int> betterColumn(m+1);
+    vector<int> betterLine(n+1);
 
-
+    int sum=0;
     for(int i=0; i<m; i++){
-        int sum=0;
+        sum=0;
         for(int j=0; j<n; j++){
             sum+=mat[j][i];
         }
-        better.push_back(sum);
+        betterColumn.push_back(sum);
     }
 
-    sort(better.begin(), better.end());
+    int sum2=0;
+    for(int i=0; i<n; i++){
+        sum2=0;
+        for(int j=0; j<m; j++){
+            sum2+=mat[i][j];
+        }
+        betterLine.push_back(sum2);
+    }
 
-    cout << better.back() << endl;
+    sort(betterLine.begin(), betterLine.end());
+    sort(betterColumn.begin(), betterColumn.end());
 
+    if(betterColumn.back() > betterLine.back()){
+        cout << betterColumn.back() << endl;
+    }
+    else cout << betterLine.back() << endl;
     return 0;
 }
 
