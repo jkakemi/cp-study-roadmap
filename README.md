@@ -29,7 +29,8 @@ Exercises are selected from platforms like:
 
 - Codeforces  
 - Beecrowd/URI  
-- CSES  
+- CSES
+- AtCoder
 - SPOJ  
 
 ## 🧠 Scope
