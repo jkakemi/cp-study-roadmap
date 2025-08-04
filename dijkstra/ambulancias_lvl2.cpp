@@ -3,13 +3,16 @@
 using namespace std;
 
 vector<vector<pair<int, int>>> adj;
+vector<int> hospital;
 
-vector<int> dijkstra(int s, int n){
+vector<int> dijkstra(int n){
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> fila;
-    vector<int> dist(n, 0);
+    vector<int> dist(n, INT_MAX);
 
-    fila.push({0, s});
-    dist[s] = 0;
+    for(int i=0; i<hospital.size(); i++){
+        dist[hospital[i]] = 0;
+        fila.push({0, hospital[i]});
+    }
 
     while(!fila.empty()){
         int u = fila.top().second;
@@ -51,34 +54,24 @@ int main() {
             adj[v].push_back({u, w});
         }
 
-        vector<int> hospital(q);
+        hospital.resize(q);
 
         for(int i=0; i<q; i++) cin >> hospital[i];
 
-        auto dist = dijkstra()
+        auto dist = dijkstra(n+1);
 
-        // auto dist1 = dijkstra(1, n);
-        // auto distN = dijkstra(n, n+1);
+        sort(dist.begin(), dist.end(), greater<int>());
 
-        // int maxi = 0;
-        // for(int h : hospital){
-        //     if(dist1[h] != INT_MAX && distN[h] != INT_MAX){
-        //         maxi = max(maxi, dist1[h]+distN[h]);
-        //     }
-        // }
+        if(flag){
+            cout << 0 << endl;
+        }
+        else{
+            cout << dist[1] << endl;
+        }
 
-        // if(flag){
-        //     cout << 0 << endl;
-        //     continue;
-        // }
-        // cout << maxi << endl;
-
+        hospital.clear();
         adj.clear();
     }
 
-    
-
     return 0;
 }
-
-// UNFINISHED
